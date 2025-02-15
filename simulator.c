@@ -23,3 +23,9 @@ typedef struct Vehicle {
     int speed;
     int direction;  // 0: down, 1: right, 2: up, 3: left
 } Vehicle;
+
+typedef struct {
+    char road;
+    int lane;
+    int priority;
+} LanePriority;
