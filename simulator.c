@@ -14,3 +14,12 @@
 #define LIGHT_SIZE 50
 #define LIGHT_OFFSET 10
 #define VEHICLE_SPAWN_INTERVAL 1000 // Time between vehicle spawns in milliseconds
+
+typedef struct Vehicle {
+    int id;
+    char road;
+    int lane;
+    SDL_Rect rect;
+    int speed;
+    int direction;  // 0: down, 1: right, 2: up, 3: left
+} Vehicle;
