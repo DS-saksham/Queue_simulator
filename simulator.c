@@ -29,3 +29,13 @@ typedef struct {
     int lane;
     int priority;
 } LanePriority;
+
+typedef struct {
+    LanePriority* data;
+    int size;
+    int capacity;
+} PriorityQueue;
+
+typedef struct {
+    int x, y;
+} TrafficLight;
