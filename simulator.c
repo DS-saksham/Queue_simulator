@@ -39,3 +39,34 @@ typedef struct {
 typedef struct {
     int x, y;
 } TrafficLight;
+
+Vehicle vehicles[MAX_VEHICLES];
+const int ROAD_X_START = (SCREEN_WIDTH - 500) / 2;
+const int ROAD_Y_START = (SCREEN_HEIGHT - 500) / 2;
+
+SDL_Texture *carTexture;
+TrafficLight trafficLights[8]; // 2 lights per corner, 4 corners
+Uint32 lastBlink = 0;
+bool isLightRed = true;
+Uint32 lastSpawnTime = 0;
+
+// Function Prototype of all the functions used in the project
+void initializePriorityQueue(PriorityQueue* pq, int maxSize);
+void heapifyUp(PriorityQueue* pq, int index);
+void heapifyDown(PriorityQueue* pq, int index);
+void enqueuePriority(PriorityQueue* pq, LanePriority item);
+LanePriority dequeuePriority(PriorityQueue* pq);
+bool isEmptyPriority(PriorityQueue* pq);
+void updatePriority(PriorityQueue* pq, char road, int lane, int newPriority);
+void generateVehicle();
+void updateVehicles(PriorityQueue* pq);
+void renderVehicles(SDL_Renderer *renderer);
+void renderLane(SDL_Renderer *renderer);
+void renderTrafficLights(SDL_Renderer *renderer);
+
+// The priority queue was inalilized
+void initializePriorityQueue(PriorityQueue* pq, int maxSize) {
+    pq->data = (LanePriority*)malloc(sizeof(LanePriority) * maxSize);
+    pq->size = 0;
+    pq->capacity = maxSize;
+}
