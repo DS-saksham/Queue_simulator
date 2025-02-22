@@ -70,3 +70,29 @@ void initializePriorityQueue(PriorityQueue* pq, int maxSize) {
     pq->size = 0;
     pq->capacity = maxSize;
 }
+
+void heapifyDown(PriorityQueue* pq, int index) {
+    int smallest = index;
+    int leftChild = 2 * index + 1;
+    int rightChild = 2 * index + 2;
+
+    if (leftChild < pq->size && pq->data[leftChild].priority < pq->data[smallest].priority)
+        smallest = leftChild;
+
+    if (rightChild < pq->size && pq->data[rightChild].priority < pq->data[smallest].priority)
+        smallest = rightChild;
+
+    if (smallest != index) {
+        LanePriority temp = pq->data[index];
+        pq->data[index] = pq->data[smallest];
+        pq->data[smallest] = temp;
+        heapifyDown(pq, smallest);
+    }
+}
+
+void enqueuePriority(PriorityQueue* pq, LanePriority item) {
+    if (pq->size == pq->capacity) return;
+    pq->data[pq->size] = item;
+    heapifyUp(pq, pq->size);
+    pq->size++;
+}
