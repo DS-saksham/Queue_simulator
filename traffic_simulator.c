@@ -114,3 +114,55 @@ Vehicle *createVehicle(Direction direction) {
            vehicle->rect.w = 30; // width
            vehicle->rect.h = 20; // height
        }
+         // Fixed spawn positions for each direction
+    switch (direction) {
+        case DIRECTION_NORTH:                             // Spawns at bottom, moves up
+            vehicle->x = INTERSECTION_X - LANE_WIDTH / 2; // Left lane
+            if (rand() % 2) { // Randomly choose right lane
+                vehicle->x += LANE_WIDTH;
+            }
+            vehicle->y = WINDOW_HEIGHT - vehicle->rect.h;
+            vehicle->isInRightLane = (vehicle->x > INTERSECTION_X);
+            break;
+    
+        case DIRECTION_SOUTH:                             // Spawns at top, moves down
+            vehicle->x = INTERSECTION_X - LANE_WIDTH / 2; // Left lane
+            if (rand() % 2) { // Randomly choose right lane
+                vehicle->x += LANE_WIDTH;
+            }
+            vehicle->y = 0;
+            vehicle->isInRightLane = (vehicle->x > INTERSECTION_X);
+            break;
+    
+        case DIRECTION_EAST: // Spawns at left, moves right
+            vehicle->x = 0;
+            vehicle->y = INTERSECTION_Y - LANE_WIDTH / 2; // Top lane
+            if (rand() % 2) { // Randomly choose bottom lane
+                vehicle->y += LANE_WIDTH;
+            }
+            vehicle->isInRightLane = (vehicle->y > INTERSECTION_Y);
+            break;
+    
+        case DIRECTION_WEST: // Spawns at right, moves left
+            vehicle->x = WINDOW_WIDTH - vehicle->rect.w;
+            vehicle->y = INTERSECTION_Y - LANE_WIDTH / 2; // Top lane
+            if (rand() % 2) { // Randomly choose bottom lane
+                vehicle->y += LANE_WIDTH;
+            }
+            vehicle->isInRightLane = (vehicle->y > INTERSECTION_Y);
+            break;
+        }
+    
+        // Center vehicle in lane
+        if (direction == DIRECTION_NORTH || direction == DIRECTION_SOUTH) {
+            vehicle->x += (LANE_WIDTH / 4 - vehicle->rect.w / 2); // Center in lane
+        } else {
+            vehicle->y += (LANE_WIDTH / 4 - vehicle->rect.h / 2); // Center in lane
+        }
+    
+        vehicle->rect.x = (int)vehicle->x;
+        vehicle->rect.y = (int)vehicle->y;
+    
+        return vehicle;
+    }
+    
