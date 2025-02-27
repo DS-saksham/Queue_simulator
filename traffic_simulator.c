@@ -54,7 +54,6 @@ void updateTrafficLights(TrafficLight *lights) {
             }
         }
 
-        // Toggle lights based on priority
         for (int i = 0; i < 4; i++) {
             if (lanePriorities[i] == 1) {
                 lights[i].state = GREEN; // Give green light to high-priority lane
@@ -64,3 +63,36 @@ void updateTrafficLights(TrafficLight *lights) {
         }
     }
 }
+
+Vehicle *createVehicle(Direction direction) {
+    Vehicle *vehicle = (Vehicle *)malloc(sizeof(Vehicle));
+    vehicle->direction = direction;
+
+    // Set vehicle type with probabilities
+    int typeRoll = rand() % 100;
+    if (typeRoll < 5) {
+        vehicle->type = AMBULANCE;
+    } else if (typeRoll < 10) {
+        vehicle->type = POLICE_CAR;
+    } else if (typeRoll < 15) {
+        vehicle->type = FIRE_TRUCK;
+    } else {
+        vehicle->type = REGULAR_CAR;
+    }
+
+    vehicle->active = true;
+      // Set speed based on vehicle type
+      switch (vehicle->type) {
+        case AMBULANCE:
+        case POLICE_CAR:
+            vehicle->speed = 4.0f;
+            break;
+        case FIRE_TRUCK:
+            vehicle->speed = 3.5f;
+            break;
+        default:
+            vehicle->speed = 2.0f;
+        }
+    
+        vehicle->state = STATE_MOVING;
+        vehicle->turnAngle = 0.0f;
