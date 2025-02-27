@@ -245,3 +245,36 @@ Vehicle *createVehicle(Direction direction) {
             break;
         }
     }
+
+    // Update vehicle state based on stopping conditions
+    if (shouldStop) {
+        vehicle->state = STATE_STOPPING;
+        vehicle->speed *= 0.8f; // Increased deceleration
+        if (vehicle->speed < 0.1f) {
+            vehicle->state = STATE_STOPPED;
+            vehicle->speed = 0;
+
+            // Adjust position to maintain spacing with the car in front
+            for (int i = 0; i < MAX_VEHICLES; i++) {
+                if (vehicles[i].active && vehicles[i].direction == vehicle->direction &&
+                    vehicles[i].state == STATE_STOPPED && vehicles[i].rect.y < vehicle->rect.y) {
+                    vehicle->rect.y = vehicles[i].rect.y + vehicles[i].rect.h + carSpacing;
+                    break;
+                }
+            }
+        }
+    } else if (vehicle->state == STATE_STOPPED && !shouldStop) {
+        vehicle->state = STATE_MOVING;
+        // Reset speed based on vehicle type
+        switch (vehicle->type) {
+        case AMBULANCE:
+        case POLICE_CAR:
+            vehicle->speed = 4.0f;
+            break;
+        case FIRE_TRUCK:
+            vehicle->speed = 3.5f;
+            break;
+        default:
+            vehicle->speed = 2.0f;
+        }
+    }
