@@ -96,3 +96,21 @@ Vehicle *createVehicle(Direction direction) {
     
         vehicle->state = STATE_MOVING;
         vehicle->turnAngle = 0.0f;
+        vehicle->turnProgress = 0.0f;
+
+       // 30% chance to turn
+       int turnChance = rand() % 100;
+       if (turnChance < 30) {
+           vehicle->turnDirection = (turnChance < 15) ? TURN_LEFT : TURN_RIGHT;
+       } else {
+           vehicle->turnDirection = TURN_NONE;
+       }
+   
+       // Set dimensions based on direction
+       if (direction == DIRECTION_NORTH || direction == DIRECTION_SOUTH) {
+           vehicle->rect.w = 20; // width
+           vehicle->rect.h = 30; // height
+       } else {
+           vehicle->rect.w = 30; // width
+           vehicle->rect.h = 20; // height
+       }
