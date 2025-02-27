@@ -16,7 +16,6 @@ This project simulates a traffic management system at a junction connecting four
 - [Usage](#usage)
 - [Simulation Details](#simulation-details)
 - [Technologies Used](#technologies-used)
-- [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
@@ -70,13 +69,7 @@ This project simulates a traffic management system at a junction connecting four
    - Pair lights to control opposite lanes.
    - Calculate green light duration using:
 
-    \[
-    \text{Total time of green light} = |V| \times t
-    \]
 
-    Where:
-      - \( |V| \) = Total vehicles served
-      - \( t \) = Time per vehicle
 3. **Vehicle Dispatching:**
    - Under normal conditions, serve vehicles equally from each lane.
    - Under high-priority conditions, serve priority lane (AL2) until vehicles < 5.
@@ -123,14 +116,6 @@ This project simulates a traffic management system at a junction connecting four
 - **Programming Language:** C++
 - **Data Structure:** Queue, Priority Queue
 - **Compiler:** g++ (with C++11 standard)
-
----
-
-## Future Enhancements
-- Add graphical visualization for better user experience.
-- Implement real-time traffic data integration.
-- Enhance simulation speed and accuracy.
-- Add support for pedestrian crossings and emergency vehicle prioritization.
 
 ---
 
