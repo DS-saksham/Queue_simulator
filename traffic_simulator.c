@@ -278,3 +278,33 @@ Vehicle *createVehicle(Direction direction) {
             vehicle->speed = 2.0f;
         }
     }
+     // Movement logic
+     float moveSpeed = vehicle->speed;
+     if (vehicle->state == STATE_MOVING || vehicle->state == STATE_STOPPING) {
+         switch (vehicle->direction) {
+         case DIRECTION_NORTH:
+             vehicle->y -= moveSpeed;
+             break;
+         case DIRECTION_SOUTH:
+             vehicle->y += moveSpeed;
+             break;
+         case DIRECTION_EAST:
+             vehicle->x += moveSpeed;
+             break;
+         case DIRECTION_WEST:
+             vehicle->x -= moveSpeed;
+             break;
+         }
+     }
+ 
+     // Update rectangle position
+     vehicle->rect.x = (int)vehicle->x;
+     vehicle->rect.y = (int)vehicle->y;
+ 
+     // Check if vehicle has left the screen
+     if (vehicle->x < -100 || vehicle->x > WINDOW_WIDTH + 100 ||
+         vehicle->y < -100 || vehicle->y > WINDOW_HEIGHT + 100) {
+         vehicle->active = false;
+     }
+ }
+ 
