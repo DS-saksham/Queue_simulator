@@ -165,4 +165,83 @@ Vehicle *createVehicle(Direction direction) {
     
         return vehicle;
     }
+
+    void updateVehicle(Vehicle *vehicle, TrafficLight *lights, Vehicle *vehicles) {
+        if (!vehicle->active)
+            return;
     
+        float stopLine = 0;
+        bool shouldStop = false;
+        float stopDistance = 40.0f; // Distance from the stop line
+        float carSpacing = 10.0f;   // Minimum spacing between cars
+        float turnPoint = 0;
+        bool hasEmergencyPriority = (vehicle->type != REGULAR_CAR);
+    
+        // Calculate stop line based on direction
+        switch (vehicle->direction) {
+        case DIRECTION_NORTH:
+            stopLine = INTERSECTION_Y + LANE_WIDTH + 40;
+            if (vehicle->turnDirection == TURN_LEFT) {
+                turnPoint = INTERSECTION_Y - LANE_WIDTH / 4;
+            } else if (vehicle->turnDirection == TURN_RIGHT) {
+                turnPoint = INTERSECTION_Y + LANE_WIDTH / 4;
+            } else {
+                turnPoint = INTERSECTION_Y;
+            }
+            break;
+        case DIRECTION_SOUTH:
+            stopLine = INTERSECTION_Y - LANE_WIDTH - 40;
+            if (vehicle->turnDirection == TURN_LEFT) {
+                turnPoint = INTERSECTION_Y + LANE_WIDTH / 4;
+            } else if (vehicle->turnDirection == TURN_RIGHT) {
+                turnPoint = INTERSECTION_Y - LANE_WIDTH / 4;
+            } else {
+                turnPoint = INTERSECTION_Y;
+            }
+            break;
+        case DIRECTION_EAST:
+            stopLine = INTERSECTION_X - LANE_WIDTH - 40;
+            if (vehicle->turnDirection == TURN_LEFT) {
+                turnPoint = INTERSECTION_X + LANE_WIDTH / 4;
+            } else if (vehicle->turnDirection == TURN_RIGHT) {
+                turnPoint = INTERSECTION_X - LANE_WIDTH / 4;
+            } else {
+                turnPoint = INTERSECTION_X;
+            }
+            break;
+        case DIRECTION_WEST:
+            stopLine = INTERSECTION_X + LANE_WIDTH + 40;
+            if (vehicle->turnDirection == TURN_LEFT) {
+                turnPoint = INTERSECTION_X - LANE_WIDTH / 4;
+            } else if (vehicle->turnDirection == TURN_RIGHT) {
+                turnPoint = INTERSECTION_X + LANE_WIDTH / 4;
+            } else {
+                turnPoint = INTERSECTION_X;
+            }
+            break;
+        }
+        // Check if vehicle should stop based on traffic lights
+    if (!hasEmergencyPriority) {
+        switch (vehicle->direction) {
+        case DIRECTION_NORTH:
+            shouldStop = (vehicle->y > stopLine - stopDistance) &&
+                         (vehicle->y < stopLine) &&
+                         lights[DIRECTION_NORTH].state == RED;
+            break;
+        case DIRECTION_SOUTH:
+            shouldStop = (vehicle->y < stopLine + stopDistance) &&
+                         (vehicle->y > stopLine) &&
+                         lights[DIRECTION_SOUTH].state == RED;
+            break;
+        case DIRECTION_EAST:
+            shouldStop = (vehicle->x < stopLine + stopDistance) &&
+                         (vehicle->x > stopLine) &&
+                         lights[DIRECTION_EAST].state == RED;
+            break;
+        case DIRECTION_WEST:
+            shouldStop = (vehicle->x > stopLine - stopDistance) &&
+                         (vehicle->x < stopLine) &&
+                         lights[DIRECTION_WEST].state == RED;
+            break;
+        }
+    }
