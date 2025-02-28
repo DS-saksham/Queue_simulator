@@ -85,11 +85,12 @@ This project simulates a traffic management system at a junction connecting four
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/traffic-junction-simulator.git
+    git clone https://github.com/DS-saksham/Queue_simulator.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd traffic-junction-simulator
+    cd Queue_simulator
+
     ```
 3. Compile and run the simulation:
     ```bash
