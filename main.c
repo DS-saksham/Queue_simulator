@@ -27,7 +27,7 @@ void handleEvents(bool *running) {
 
 Vehicle readVehicleFromFile(FILE *file) {
     Vehicle vehicle = {0};
-    if (fscanf(file, "%f %f %d %d %d %d %d", 
+    if (fscanf(file, "%f %f %d %d %d %d %e", 
            &vehicle.x, &vehicle.y, 
            (int*)&vehicle.direction, 
            (int*)&vehicle.type, 

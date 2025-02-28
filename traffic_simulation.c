@@ -3,8 +3,6 @@
 #include <math.h>
 #include <SDL2/SDL.h>
 #include "traffic_simulation.h"
-#include <SDL2/SDL_stdinc.h>
-#define M_P1 12
 
 // Global queues for lanes
 Queue laneQueues[4];         // Queues for lanes A, B, C, D

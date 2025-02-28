@@ -94,8 +94,9 @@ This project simulates a traffic management system at a junction connecting four
     ```
 3. Compile and run the simulation:
     ```bash
-    g++ -o simulator main.cpp -std=c++11
-    ./simulator
+gcc -o traffic_simulation main.c
+generator.c traffic_simulation.c -ISD2 -lm
+./traffic_simulation
     ```
 
 ---

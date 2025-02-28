@@ -53,6 +53,7 @@ typedef struct {
     Direction direction;
     TurnDirection turnDirection;
     VehicleState state;
+    int priority;
     float speed;
     float x;
     float y;
