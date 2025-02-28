@@ -20,7 +20,6 @@ This project simulates a traffic management system at a junction connecting four
 - [Simulation Details](#simulation-details)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [License](#license)
 - [Acknowledgements](#acknowledgements)
 
 ---
@@ -94,8 +93,8 @@ This project simulates a traffic management system at a junction connecting four
     ```
 3. Compile and run the simulation:
     ```bash
-gcc -o simulation generator.c main.c traffic_simulation.c -lSDL2 -lm
-./simulation
+    gcc -o simulation generator.c main.c traffic_simulation.c -lSDL2 -lm
+    ./simulation
     ```
 
 ---
@@ -116,9 +115,9 @@ gcc -o simulation generator.c main.c traffic_simulation.c -lSDL2 -lm
 ---
 
 ## Technologies Used
-- **Programming Language:** C++
+- **Programming Language:** C
 - **Data Structure:** Queue, Priority Queue
-- **Compiler:** gcc (with C++11 standard)
+- **Compiler:** gcc 
 
 ---
 
@@ -139,7 +138,6 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
     ```
 5. Submit a pull request.
 
----
 
 
 ---
