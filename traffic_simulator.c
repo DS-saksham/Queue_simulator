@@ -383,3 +383,18 @@ void renderSimulation(SDL_Renderer *renderer, Vehicle *vehicles, TrafficLight *l
         SDL_SetRenderDrawColor(renderer, (lights[i].state == RED) ? 255 : 0, (lights[i].state == GREEN) ? 255 : 0, 0, 255);
         SDL_RenderFillRect(renderer, &lights[i].position);
     }
+
+
+    // Render vehicles
+    for (int i = 0; i < MAX_VEHICLES; i++) {
+        if (vehicles[i].active) {
+            SDL_SetRenderDrawColor(renderer, VEHICLE_COLORS[vehicles[i].type].r, VEHICLE_COLORS[vehicles[i].type].g, VEHICLE_COLORS[vehicles[i].type].b, VEHICLE_COLORS[vehicles[i].type].a);
+            SDL_RenderFillRect(renderer, &vehicles[i].rect);
+        }
+    }
+
+    // Render queues
+    renderQueues(renderer);
+
+    SDL_RenderPresent(renderer);
+}
