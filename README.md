@@ -94,9 +94,8 @@ This project simulates a traffic management system at a junction connecting four
     ```
 3. Compile and run the simulation:
     ```bash
-gcc -o traffic_simulation main.c
-generator.c traffic_simulation.c -ISD2 -lm
-./traffic_simulation
+gcc -o simulation generator.c main.c traffic_simulation.c -lSDL2 -lm
+./simulation
     ```
 
 ---
@@ -119,7 +118,7 @@ generator.c traffic_simulation.c -ISD2 -lm
 ## Technologies Used
 - **Programming Language:** C++
 - **Data Structure:** Queue, Priority Queue
-- **Compiler:** g++ (with C++11 standard)
+- **Compiler:** gcc (with C++11 standard)
 
 ---
 
@@ -142,8 +141,6 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ---
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 

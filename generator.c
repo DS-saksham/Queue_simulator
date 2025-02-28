@@ -4,7 +4,7 @@
 #include "traffic_simulation.h"
 
 void writeVehicleToFile(FILE *file, Vehicle *vehicle) {
-    fprintf(file, "%f %f %d %d %d %d %d\n", 
+    fprintf(file, "%f %f %d %d %d %d %f\n", 
             vehicle->x, vehicle->y, 
             vehicle->direction, 
             vehicle->type, 
