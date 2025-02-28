@@ -37,5 +37,5 @@ void generateVehicles() {
         SDL_Delay(2000); // 2 seconds delay
     }
 
-    fclose(file);
+    fclose(file); // Close the file
 }
