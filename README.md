@@ -1,5 +1,8 @@
 # Traffic Junction Simulation
 
+![Traffic Simulation Demo](./demo.gif)
+---
+
 ## Overview  
 This project simulates a traffic management system at a junction connecting four major roads (A, B, C, and D). Each road has three lanes with specific rules for vehicle movement, traffic lights, and priority management. The system uses queues to manage vehicle flow and priority lanes, aiming to solve real-world traffic issues through data structures.
 
